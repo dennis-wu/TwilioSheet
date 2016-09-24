@@ -11,18 +11,23 @@ import logging
 
 @app.route("/", methods=['GET'])
 def index():
+    
     return render_template('base.html', state="nothing-submitted")
 
 @app.route("/", methods=['POST'])
 def submit():
+    print "I'm on submit"
+    logging.info('something in submit')
 
     try:
 
         form = FormValidator(request.form['url'])
-        
+        print "I'm on submit - form"
         if form.Validate():
             message = "Looks good! Here is the data that will be sent to your spreadsheet:"
+            print "I'm on submit - v1 "
             sms_request_url = url_for('form', formkey=form.formkey, _external=True)
+            print "I'm on submit - v2"
 
             return render_template('base.html',
                         message=message,

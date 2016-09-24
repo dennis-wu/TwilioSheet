@@ -35,7 +35,11 @@ class FormValidator:
             self.failureReason = ValidationFailureReason.NoUrl
             return False
 
+        print self.url
+
         parsed_url = urlparse(self.url)
+
+        print parsed_url
 
         if not "https" in parsed_url.scheme:
             self.failureReason = ValidationFailureReason.NoGoogleInUrl
@@ -46,9 +50,13 @@ class FormValidator:
             return False
 
         path_parts = parsed_url.path.split('/')
+        
+        print path_parts
 
         self.formkey = path_parts[len(path_parts)-2]
-        
+
+        print self.formkey
+
         try:
             gform = GoogleForm(self.formkey)
 

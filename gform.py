@@ -26,7 +26,7 @@ class GoogleForm:
 
         """Given a Google Form 'formkey',
            will parse interesting information from said form."""
-        form_url = "https://docs.google.com/forms/d/{0}/viewform".format(formkey)
+        form_url = "https://docs.google.com/a/letslinc.com/forms/d/e/{0}/viewform".format(formkey)
 
         self.formkey = ''
         self.action_url = ''
@@ -34,8 +34,14 @@ class GoogleForm:
         self.labels = {}
 
         try:
+            print 'in gform 1 ' + str(form_url)
+            
             html = pq(url=form_url)
+            print 'in gform 2'
+            print html
+
         except Exception as inst:
+            print 'exception ' + str(inst)
             logging.warn(inst)
             raise GoogleFormException("Error parsing URL '%s', did you pass the correct formkey?" % inst)
 
