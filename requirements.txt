@@ -6,3 +6,5 @@ lxml==3.6.4
 pyquery==1.2.13
 wsgiref==0.1.2
 enum==0.4.6
+gevent
+gunicorn
