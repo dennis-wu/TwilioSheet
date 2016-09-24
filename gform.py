@@ -38,7 +38,7 @@ class GoogleForm:
             
             html = pq(url=form_url)
             print 'in gform 2'
-            print html
+            #print html
 
         except Exception as inst:
             print 'exception ' + str(inst)
@@ -60,7 +60,9 @@ class GoogleForm:
                 self.parameters[input_id] = input_value
                 
             self.labels[input_label] = input_id
-
+        
+        print 'end of. show state follows'
+        self.show_state()
 
 
     def show_state(self):
