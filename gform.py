@@ -96,6 +96,11 @@ class GoogleForm:
            to the Google Form"""
 
         url = self.action_url + urllib.urlencode(self.parameters)
+        print self.action_url
+        print self.parameters
+        print url
+
+
         logging.warn(url)
 
         f = urllib2.urlopen(self.action_url, urllib.urlencode(self.parameters))

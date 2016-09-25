@@ -94,11 +94,15 @@ def form(formkey):
 
     gform = GoogleForm(formkey)
 
+    print 'in routers.pyt form method'
     # I could probably re-implement this with fewer lines using sets
     for key in request.values:
+        print key
         if key in gform.labels:
             name = gform.labels[key]
             gform.parameters[name] = request.values[key]
    
+    gform.show_state()
+
     return gform.submit()
 
