@@ -57,11 +57,15 @@ class GoogleForm:
             input_label = text_item.find('.freebirdFormviewerViewItemsItemItemTitle').text()
             print input_label
 
-            input_id = item.find('.freebirdFormviewerViewItemsItemItemHelpText').attr('id')
-            print input_id
+            input_html = item.find('.quantumWizTextinputPaperinputInput.exportInput')
+            
+            print input_html
 
-            input_name = text_item.find('input[type=\'text\']').attr('name')
-            input_value = text_item.find('input[type=\'text\']').val()
+#            input_id = item.find('.freebirdFormviewerViewItemsItemItemHelpText').attr('id')
+#            print input_id
+            input_id = input_html.attr('name') 
+            input_name = input_html.attr('aria-label')
+            input_value = input_html.val()
 
 #        for item in html.find('.ss-item.ss-text'):
 #            text_item = pq(item)
