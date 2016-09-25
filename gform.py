@@ -46,7 +46,7 @@ class GoogleForm:
             logging.warn(inst)
             raise GoogleFormException("Error parsing URL '%s', did you pass the correct formkey?" % inst)
 
-        form = html('#ss-form')
+        form = html.find('form')
         self.action_url = form.attr['action']
 
         # Map out the label to form-input-name relationships
