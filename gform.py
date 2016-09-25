@@ -31,7 +31,8 @@ class GoogleForm:
         self.formkey = ''
         self.action_url = ''
         self.parameters = {}
-        self.labels = {}
+        self.labels = {}   
+        # label example: SmsSid, From, To
 
         try:
             print 'in gform 1 ' + str(form_url)
@@ -49,12 +50,21 @@ class GoogleForm:
         self.action_url = form.attr['action']
 
         # Map out the label to form-input-name relationships
-        for item in html.find('.ss-item.ss-text'):
+        for item in html.find('.freebirdFormviewerViewItemsItemItem.freebirdFormviewerViewItemsTextTextItem'):
             text_item = pq(item)
+            print text_item
+
             input_label = text_item.find('.ss-q-title').text()
             input_id = text_item.find('input[type=\'text\']').attr('id')
             input_name = text_item.find('input[type=\'text\']').attr('name')
             input_value = text_item.find('input[type=\'text\']').val()
+
+#        for item in html.find('.ss-item.ss-text'):
+#            text_item = pq(item)
+#            input_label = text_item.find('.ss-q-title').text()
+#            input_id = text_item.find('input[type=\'text\']').attr('id')
+#            input_name = text_item.find('input[type=\'text\']').attr('name')
+#            input_value = text_item.find('input[type=\'text\']').val()
 
             if (input_id != ""):
                 self.parameters[input_id] = input_value
