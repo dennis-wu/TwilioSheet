@@ -3,6 +3,12 @@ import urllib
 import urllib2
 import re
 import logging
+from twilio.rest import TwilioRestClient
+
+# Find these values at https://twilio.com/user/account
+account_sid = "AC4eaf871649e343703db8d1dead644f5b"
+auth_token  = "85a92cee1e3c131cd9d5348114e287f1"
+twilio_client = TwilioRestClient(account_sid, auth_token)
 
 class GoogleFormException(Exception):
     pass
@@ -107,6 +113,18 @@ class GoogleForm:
         result = pq(f.read())
         message = result.find('.ss-resp-message').text()
         
+        # send thank you sms message back
+        entry_id = None
+        for label in self.labels:
+            if label == 'From':
+                entry_id = self.labels[label]
+
+        if entry_id != None:
+            to_number = self.parameters[entry_id]
+            sms_message = twilio_client.messages.create(to= to_number, from_="+18552325462", body="Thanksfor linc-ing!")
+        else:
+            print 'can not find proper entry_id for From field'
+
         # http://bit.ly/12ySdJQ
         response = "<Response><!-- %s --></Response>" % message
         return response
