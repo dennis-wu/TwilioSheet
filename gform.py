@@ -54,8 +54,12 @@ class GoogleForm:
             text_item = pq(item)
             print text_item
 
-            input_label = text_item.find('.ss-q-title').text()
-            input_id = text_item.find('input[type=\'text\']').attr('id')
+            input_label = text_item.find('.freebirdFormviewerViewItemsItemItemTitle').text()
+            print input_label
+
+            input_id = item.find('.freebirdFormviewerViewItemsItemItemHelpText').attr('id')
+            print input_id
+
             input_name = text_item.find('input[type=\'text\']').attr('name')
             input_value = text_item.find('input[type=\'text\']').val()
 
