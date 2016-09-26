@@ -121,7 +121,7 @@ class GoogleForm:
 
         if entry_id != None:
             to_number = self.parameters[entry_id]
-            sms_message = twilio_client.messages.create(to= to_number, from_="+18552325462", body="Thanksfor linc-ing!")
+            sms_message = twilio_client.messages.create(to= to_number, from_="+18552325462", body="Thanks for Linc-ing! You've officially been entered into a chance to win an Amazon Echo. Winner will be emailed October 4th")
         else:
             print 'can not find proper entry_id for From field'
 
